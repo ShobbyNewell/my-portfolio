@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+  <link href="./assets/favicon.ico" rel="icon">
+
+  <title>My Masters of Engineering Experience</title>  
+
+<link href="./main.3f6952e4.css" rel="stylesheet"></head>
+
+<body class="">
+<div id="site-border-left"></div>
+<div id="site-border-right"></div>
+<div id="site-border-top"></div>
+<div id="site-border-bottom"></div>
+<!-- Add your content of header -->
+<header>
+  <nav class="navbar  navbar-fixed-top navbar-default">
+    <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav ">
+          <li><a href="./index.html" title="">01 : Home</a></li>
+          <li><a href="./works.html" title="">02 : My Projects</a></li>
+          <li><a href="./about.html" title="">03 : About me</a></li>
+          <li><a href="./contact.html" title="">04 : Contact</a></li>
+        </ul>
+
+
+          <ul class="nav navbar-nav navbar-right navbar-small visible-md visible-lg"> 
+            <li><a href="./Masters.html" title="" class="active">001</a></li>
+            <li><a href="./Bachelors.html" title="">002</a></li>
+            <li><a href="./Extra curricular.html" title="">003</a></li>
+            <li><a href="./Work experience.html" title="">004</a></li>
+            <li><a href="./Personal projects.html" title="">005</a></li>
+            <li><a href="./Extras.html" title="">006</a></li>
+          </ul>
+          <!-- remember to fix this -->
+
+      </div> 
+    </div>
+  </nav>
+</header>
+<div class="section-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <center><img src="./assets/images/dfma header.jpg" class="img-responsive" alt="" height ="500" width = "775"></center>
+        <div class="card-container">
+          <div class="text-center">
+            <h1 class="h2">My Masters of Engineering Experience</h1>
+          </div>
+          <p>
+            Here I go through a few courses I did during my Masters at the University of Toronto. I was in the Aerospace department, and most of my classes were at UTIAS. The reports I did for these courses can be found here, but I talk about a few of them in my own words, and how it has influenced me to pursue other related things.
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+      
+     <!-- AER 1403 Section -->
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h2>AER 1403: Advanced Aerospace Structures</h2>
+              <h3>Project 1: Optimal design of composite sandwich beams</h3>
+              
+              <p>In this project, we were to design the length and width of a composite sandwich beam (composed of 2 stiff composite faces with a lightweight polymer core), with pre-determined material properties, and a given load, such that a minimum mass is reached.</p>
+
+              <p>Sandwich beams like this are subject to a few mechanisms of failure: elastic indentation, core shear, face microbuckling, and face wrinkling (though face wrinkling wasn't explored in this project), and we want to achieve a minimum mass index M(hat) given a structural load index P(hat). This is done through a failure mechanism map, that uses the face and core thickness ratios as axes, and plots the boundary regions where a specific failure is dominant. The optimal design trajectory rides the boundary between 2 failure mechanisms, and will give you the desired optimal length and width.</p>
+              
+              <p>Given that sandwich beams and panels are used heavily in aerospace structures, finding a lowest mass solution made this project really relevant for economic and ecological pursuits. I hope that someday in the future, thin sandwich beams can make their way into small RC planes, as I'd love to experiment with them instead of conventional balsa wood.</p>
+
+            </div>
+            <div class="col-md-6">
+              <img src="./assets/images/sandwich beams.png" class="img-responsive" alt="" width="450" height="350">
+              <center><p>Cross section of a wing using composite sandwich beams. Source: 3D Printing of Composite Sandwich Structures for Aerospace Applications</p></center>
+              <center><iframe src="./assets/PDFs/AER1403 Project 1-1.pdf" width="85%" height="400px" style="border:none;"></iframe></center>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Project 2 -->
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h3>Project 2: Finite Element Solution for a Curved Bracket</h3>
+
+              <p>For this project, we were given a semi-circular bracket in 2D plane stress, and were asked to write finite element code, using isoparametric quadrilateral elements, to calculate displacements of the bracket. There's lots of tool libraries or commercial software to tackle this problem, such as ANSYS, but we were asked to write our own code (usually in MATLAB).</p>
+
+              <p>The process involved defining the geometry, and discretizing it using quadrilateral elements (each element with 4 nodes) to create a mesh. The geometry and displacement of these elements are interpolated with it's shape functions and their derivative, which are defined in a natural coordinate system (ξ,η). Basically, they show how a node in each element reacts with respect to the other. We can then use a Jacobian matrix to map from natural coordinates to Cartesian coordinates (x,y), and get the global shape function derivative. That is then used to build a strain displacement matrix B, and then you have enough to create an element stiffness matrix. This stiffness matrix relates the nodal displacements to the nodal forces, showing how deformed each element will be given a force on each of the nodes.</p>
+
+              <p>With the element stiffness matrix, we try to build a global stiffness matrix, that relates the entire structure's displacement to it's global force that is acting on it. This is done by numbering each node, going over each element, and scatter-adding each element stiffness matrix until we get the global stiffness matrix. The work to build this global stiffness matrix can be cut down if the shape is symmetric about one or more axis.</p>
+
+              <p>Next we apply boundary conditions (such as no displacements at the wall), and enter the global force (attached to a given node), to find the global displacement vector of the object. I also plotted some displacement contours and stress fields as part of the project. A cool aspect of this project is that this process can be repeated with a finer mesh, and the displacement can be compared. When the changes are minimal, you know you've achieved convergence.</p>
+
+
+              <p>This was one of the hardest projects I had to do, and while I can't see myself doing FEA from scratch like this in a professional setting, I can fully appreciate the backend work commercial software like ANSYS offers now.</p>
+
+            </div>
+            <div class="col-md-6">
+              <img src="./assets/images/curved bracket.png" class="img-responsive" alt="">
+              <center><p>An example of a curved bracket under load in ANSYS. Source: VulcanHammer</p></center>
+              <center><iframe src="./assets/PDFs/AER1403 Project 2-1.pdf" width="85%" height="500px" style="border:none;"></iframe></center>
+
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:20px;">
+            <div class="col-xs-12 text-center">
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- AER1216 -->
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h2>AER1216: Fundamentals of UAV</h2>
+              <h3>Simulation Analysis of Fixed-Wing and Multi-Rotor Aircraft</h3>
+
+
+              <p>For this project, we were to create a control autopilot system for a fixed-wing Aerosande UAV, which can receive navigational commands of airspeed, heading, and altitude, and compute the control surface and throttle commands. Additional calculations for range, endurance, and accounting for wind conditions were also tested. There was also a multirotor section, where we tested it's performance (range, endurance) and a linearized dynamics model was used for the multirotor to hover at a point and trace a flat horizontal circle.</p>
+
+              <p>The framework for these control systems were given on MATLAB's Simulink, and we got to tune them using PID controllers to test for stable response times and resistance to spikes from external variables, like a sudden change in wind. The whole idea behind this project was to automate a complex flight path or revert to a landing during an emergency, like if the aircraft goes out of range or experiences interference.</p>
+
+              <p>As an RC (remote control) enthusiast, this project opened my eyes onto flight controllers and FPV flying. Before this project, I was into basic scratch building RC planes out of foam, and flying them with a basic radio every now and then. This project opened me up to ArduPilot, software that runs on a flight controller and can access information from the electronics of the plane/multirotor (like the battery, motors, gyros, GPS, etc), and can create a flight plan based on it. While I've not fully mastered it yet, it has reignited a spark I used to have about the RC hobby when I was little, and I can't wait to experiment and learn more about it.</p>
+
+              
+
+            </div>
+            <div class="col-md-6">
+              
+              <img src="./assets/images/aerosande.jpg" class="img-responsive" alt="">
+              <center><p>Aerosande UAS. Source: Textron Systems</p></center>
+              <center><iframe src="./assets/PDFs/AER1216 - Project Report F2023.pdf" width="85%" height="500px" style="border:none;"></iframe></center>
+
+
+
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:20px;">
+            <div class="col-xs-12 text-center">
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- AER1217 -->
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h2>AER1217: Development of Autonomous UAS</h2>
+              <h3>Autonomous Drone Racing Competition</h3>
+
+
+              <p>This project was very interesting: Develop an autonomous path planning algorithm for a Crazyflie quadrotor to takeoff, maneuver around a few obstacles, go through some gates, and land at a specified point. It started with a given Pybullet simulation environment, where we used path planning algorithms that are search based (A*), and sampling based (RRT/RRT*) to maneuver the drone. Once it was shown in Pybullet that the drone maneuvered correctly, we tried to decrease the time taken for this process, as after all, it was a race with other groups. We focused on tuning parameters such as step size, max iterations, and path rewriting range to prevent collision. After that, we tested a few a different gate sequences, as in the final competition those would be randomized.</p>
+
+              <p>There was a practice session where we were able to physically test the drone against our simulation, and we did pretty well on it, but in the actual competition, the drone only went through 4/6 gates. We encountered issues with controlling the drones speed, causing it to hit the gate, and only after the competition (but before the report submission) did we figure out why. In the simulation, the Crazyflie's command interface is given, with high level commands such as takeoff, land, and goTo, which we used for taking off. There's also the low level command, cmdFullState(), which we used for trajectory/path planning (going through the gates, and avoiding the obstacles). In the simulation, we used a control input iteration to change the drone's speed, but actually needed to change a time duration variable instead, because of the switching of control state from high level to low level. This was not evident in simulation, but when you combine the real world latency of the drone from the VICON system, the results were not the best. These problems were not evident in our practice session, as we only went through 4 gates, not 6, which minimized the swaying trajectory caused by the control input iteration speed technique.</p>
+
+              <p>Still, the experience of the competition was fantastic, and our group didn't feel too bad, as half of the other groups also couldn't complete the full sequence. I've built quadrotors before (assembling the frame and motors), but when it comes time to tuning the sensors and flight controller, I usually follow a pre-determined tutorial. After this project, it incentivized me to play around with tuning my own drone, and look into other Pybullet simulations.</p>
+
+              
+
+            </div>
+            <div class="col-md-6">
+              
+               <video Controls width="550" height="300" autoplay loop muted>
+               <source src="./assets/images/Drone practice.mp4" type="video/mp4">
+               <source src="movie.ogg" type="video/ogg">
+               Your browser does not support the video tag.
+               </video> 
+              <center><p>Our successful practice session</p></center>
+
+
+              <video Controls width="550" height="300" autoplay loop muted>
+               <source src="./assets/images/Drone comp.mp4" type="video/mp4">
+               <source src="movie.ogg" type="video/ogg">
+               Your browser does not support the video tag.
+               </video> 
+              <center><p>Our (mostly) successful competition entry</p></center>
+
+              <center><iframe src="./assets/PDFs/Aer1217 Project Report.pdf" width="85%" height="500px" style="border:none;"></iframe></center>
+
+
+
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:20px;">
+            <div class="col-xs-12 text-center">
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+     <!-- AER 1516 Section -->
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h2>AER 1516: Motion planning for Robotics</h2>
+              <h3>Analyzing and improving path planning algorithms</h3>
+              
+              <p>There were 2 projects for this course; the first was a presentation based on an academic paper, ours was on "Smooth coverage path planning and control of mobile robots based on high resolution grid map representation", authored by Tae-Kyeong Lee, Sang-Hoon Baek, Young-Ho Choi, and Se-Young Ho. This paper was about improving the efficiency of map coverage for a robot (like how a Roomba covers a dirty floor) by reducing path overlap and increasing the average velocity during coverage. It's important to motion planning as it aims to improve energy efficiency at a reduced cost. Essentially, the proposed method involved mapping out the space into a high resolution grid map composed of small cells, allowing the robot to have a higher degree of freedom. Then a path is planned where the robot navigates in the grid, avoiding obstacles and cells that have already been visited, and that path is improved using Bezier curves (parametric curves used to model smooth and scalable shapes). They also apply Particle Swam Optimization (PSO) technique, which minimizes the curvature of the path to allow the robot to maintain optimal velocity. Overall this project gave a great insight into path planning academic papers, and how algorithms are improved upon using existing methodologies.</p>
+
+              <p>The second project was improving upon an existing academic paper, ours was on "Analysis of Obstacle Avoidance Strategy for Dual-Arm Robot Based on Speed Field with Improved Artificial Potential Field Algorithm", by Zhang, H., Zhu, Y., Liu, X., & Xu, X. Essentially, the paper covered path planning of the arms of a dual arm robot, so that they don't collide with static or dynamic obstacles (including the other arm). They introduce an extended algorithm based on potential field velocity (VP-APF). The method  integrates traditional APF attraction and repulsion functions with new concepts of speed, mapping these into the joint space using the Jacobian matrix to establish differential velocity functions for joint motion. We tested this VP-APF method in a MATLAB environment using a rigid body tree robot model, with new simulations planned in dynamic settings involving moving obstacles, and even made a video presentation that you can see. While it's not enough to write a whole academic paper on, this project gave me deeper respect to the academic authors who are always trying to improve existing algorithms.</p>
+              
+              
+
+            </div>
+            <div class="col-md-6">
+              
+              <center><iframe src="./assets/PDFs/AER1516 - Paper Presentation.pdf" width="85%" height="450px" style="border:none;"></iframe></center>
+              <center><p>Our presentation reviewing an existing algorithm based on a high resolution grid map</p></center>
+
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/WdS7pq93tY8?si=bAZgrm0fSM3pWOI2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <center><p>A video presentation on our second project, expanding on Velocity Potential APF algorithm</p></center>
+
+
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </section>
+
+
+
+     <!-- MIE 1514 Section -->
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h2>MIE 1514: Systems Design and Engineering</h2>
+              <h3>Developing a new product: Ace Master Tennis Robot</h3>
+              
+              <p>The main project for this course was to design a new product or service using systems engineering, ours was on a tennis training robot that you can play against. A camera vision system would track your movements, and AR glasses would act as a user interface (displays score , user tutorials, etc). These 3 items (robot, camera, and AR glasses) interact with each other to form one system, and we wrote a whole report on it's design requirements, modeling & simulation, benchmarking, competitiveness in the market, system reliability, and more. While I have taken engineering design courses in my Bachelors, this course expanded on my knowledge in regards to troubleshooting problems within a product or system, assessing its life cycle, and leaving it open for continuous improvement.</p>
+
+              <p></p>
+              
+              
+
+            </div>
+            <div class="col-md-6">
+              
+            <center><iframe src="./assets/PDFs/SE_final-3.pdf" width="90%" height="500px"></iframe></center>
+
+
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </section>
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+<footer class="footer-container text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>© Syed Shoaib Hasan</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     navActivePage();
+  });
+</script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-XXXXX-X', 'auto');
+  ga('send', 'pageview');
+</script>
+
+--> <script type="text/javascript" src="./main.70a66962.js"></script></body>
+
+</html>
